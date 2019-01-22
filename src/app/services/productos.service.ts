@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductosService {
-  info: any[] = [];
+  info: any[] = [];  
   cargando: boolean = true;  
   constructor(private http: HttpClient) {
     this.loadInfo();
@@ -18,8 +18,10 @@ export class ProductosService {
         //Visualize loading html longer:
         setTimeout(() => {
           this.cargando = false;          
-        }, 1500);
-        
+        }, 700);        
       });    
+  }
+  public loadItem(itemNo: number) {    
+    return this.http.get('https://angular-test-33.firebaseio.com/productos/prod-' + itemNo + '.json');      
   }
 }
